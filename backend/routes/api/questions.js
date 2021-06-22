@@ -2,13 +2,13 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const { restoreUser } = require('../../utils/auth');
-const { Question } = require('../../db/models');
+const { Question, User } = require('../../db/models');
 
 router.get(
   '/',
   restoreUser,
   asyncHandler(async (req, res) => {
-    const questions = await Question.findAll();
+    const questions = await Question.findAll({ include: User });
     res.json(questions);
   })
 );
