@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Answer = sequelize.define(
     'Answer',
     {
-      userID: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
       questionId: DataTypes.INTEGER,
       upvoteCount: DataTypes.INTEGER,
       answer: DataTypes.TEXT,

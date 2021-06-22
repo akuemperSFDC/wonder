@@ -20,14 +20,15 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to='/'>
-          Home
+    <div className='navbar-wrapper'>
+      <div className='navbar-left'>
+        <h1 className='site-name'>Wonder</h1>
+        <NavLink className='home-icon' exact to='/'>
+          <i class='fas fa-home fa-2x'></i>
         </NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+      <div className='navbar-right'>{isLoaded && sessionLinks}</div>
+    </div>
   );
 }
 

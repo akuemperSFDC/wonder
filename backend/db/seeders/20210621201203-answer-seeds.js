@@ -12,7 +12,7 @@ module.exports = {
       'Answers',
       [
         {
-          userID: 2,
+          userId: 2,
           questionId: 1,
           upvoteCount: 0,
           answer:
@@ -21,7 +21,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userID: 1,
+          userId: 1,
           questionId: 2,
           upvoteCount: 0,
           answer:
@@ -30,7 +30,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userID: 3,
+          userId: 3,
           questionId: 3,
           upvoteCount: 0,
           answer:
@@ -39,7 +39,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userID: 1,
+          userId: 1,
           questionId: 4,
           upvoteCount: 0,
           answer: 'No it is not.',
@@ -47,7 +47,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userID: 1,
+          userId: 1,
           questionId: 5,
           upvoteCount: 0,
           answer:
@@ -56,7 +56,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userID: 2,
+          userId: 2,
           questionId: 6,
           upvoteCount: 0,
           answer:
@@ -65,7 +65,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userID: 3,
+          userId: 3,
           questionId: 7,
           upvoteCount: 0,
           answer:

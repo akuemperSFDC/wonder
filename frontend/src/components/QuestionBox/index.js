@@ -1,18 +1,28 @@
 import UserInfo from '../UserInfo';
 import QuestionArea from '../QuestionArea';
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getQuestions } from '../../store/questions';
 import './QuestionBox.css';
 
 const QuestionBox = () => {
+  const dispatch = useDispatch();
   const questions = useSelector((state) => Object.values(state.questions));
 
+  useEffect(() => {
+    dispatch(getQuestions());
+  }, [dispatch]);
+
   return (
-    <div>
+    <div className='question-box-container'>
       {questions.map((question) => (
-        <div className='question-box'>
-          <UserInfo question={question} key={question.id} />
-          <QuestionArea question={question} key={question.id} />
-        </div>
+        <Link to={`/question/${question.id}`} className='question-link'>
+          <div className='question-box'>
+            <UserInfo question={question} key={question.id} />
+            <QuestionArea question={question} key={question.id} />
+          </div>
+        </Link>
       ))}
     </div>
   );
