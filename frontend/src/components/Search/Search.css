@@ -1,0 +1,37 @@
+.search-container {
+  display: inline-flex;
+  flex: 1 1 300px;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  background: white;
+  margin-right: 100px;
+}
+
+.search-icon {
+  padding: 0.5rem;
+}
+
+.search-box {
+  border: 0;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  flex: 1;
+}
+
+.search-box:focus {
+  outline: none;
+}
+
+.search-btn {
+  background: var(--main-color);
+  border: 0;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0;
+  transition: background 0.3s;
+}
+
+.search-btn:hover {
+  background: var(--main-hover-color);
+}

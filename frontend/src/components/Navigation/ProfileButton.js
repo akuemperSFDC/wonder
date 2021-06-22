@@ -37,7 +37,15 @@ function ProfileButton({ user }) {
         {showMenu && (
           <ul className='profile-dropdown arrow-top content-decoration'>
             <li>{user.username}</li>
+            <div>
+              <i class='fal fa-horizontal-rule'></i>
+              <i class='fal fa-horizontal-rule'></i>
+            </div>
             <li>{user.email}</li>
+            <div>
+              <i class='fal fa-horizontal-rule'></i>
+              <i class='fal fa-horizontal-rule'></i>
+            </div>
             <li>
               <button className='btn-logout' onClick={logout}>
                 Log Out
