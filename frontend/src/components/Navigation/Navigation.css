@@ -1,10 +1,11 @@
 .navbar-wrapper {
   box-sizing: border-box;
-  height: 45px;
+  height: 55px;
   background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 0 10px black;
 }
 
 .navbar-left {
@@ -21,27 +22,111 @@
 }
 
 .navbar-right {
-  margin-right: 250px;
+  width: 200px;
+  margin-right: 100px;
+  display: flex;
+  background-color: white;
 }
 
-/* i {
-  height: 25px;
-  width: 25px;
-  background-color: white;
-} */
-
 .site-name {
-  color: #bc0909;
+  color: var(--main-color);
 }
 
 .fa-home,
 .fa-home:visited {
-  color: #bc0909;
-  text-shadow: 0 0 3px #000;
+  color: var(--main-color);
+  background-color: white;
+  transition: color 0.3s;
+}
+
+.fa-home:hover {
+  color: var(--main-hover-color);
 }
 
 .profile-dropdown {
   margin: 50px;
+  position: absolute;
+  left: 875px;
+  top: 14px;
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 0 1px black;
+}
+
+.profile-dropdown > * {
+  background: white;
+  list-style-type: none;
+  padding: 7px;
+  text-align: center;
+}
+
+.profile-dropdown.arrow-top:after {
+  content: ' ';
+  position: absolute;
+  left: 60px;
+  top: -6px;
+  border-top: none;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-bottom: 7px solid white;
+}
+
+.profile-dropdown-container {
+  box-shadow: 0 0 1px black;
+}
+
+.session-links {
+  flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  align-items: center;
+}
+
+.session-links > * {
+  background-color: white;
+  text-decoration: none;
+  color: var(--main-color);
+  border: 2px solid transparent;
+  transition: border 0.3s;
+  font-weight: bold;
+}
+
+.session-links > *:visited {
+  color: var(--main-color);
+}
+
+.session-links > *:hover {
+  border-bottom: 2px solid var(--main-color);
+  font-weight: bold;
+}
+
+.fa-user {
+  background-color: white;
+  border: none;
+}
+
+.login-signup-link {
+  color: blue;
+}
+
+.pipechar {
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none;
+  background-color: white;
+}
+
+.login-signup-links {
+  font-weight: 900;
+}
+
+.btn-logout {
+  color: black;
+  background-color: white;
+  font-size: 16px;
+}
+
+.content-decoration > *:not(:last-child) {
+  border-bottom: 1px solid black;
 }

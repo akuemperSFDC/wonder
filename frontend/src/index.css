@@ -1,8 +1,24 @@
 /* TODO Add site wide styles */
 * {
-  box-sizing: box;
+  box-sizing: border-box;
   padding: 0px;
   margin: 0px;
   font-family: 'Roboto', sans-serif;
   background: #e5e5e5;
+}
+
+:root {
+  --main-color: #bc0909;
+  --main-hover-color: #fa8f8f;
+}
+
+button {
+  border: none;
+  color: var(--main-color);
+  transition: color 0.3s;
+}
+
+button:hover {
+  cursor: pointer;
+  color: var(--main-hover-color);
 }
