@@ -32,50 +32,58 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Email
-        <input
-          type='text'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type='text'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type='password'
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type='submit'>Sign Up</button>
-    </form>
+    <div>
+      <img
+        className='signup-bg-img'
+        src='https://images.unsplash.com/photo-1623760657159-99e314640766?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+        alt=''
+      />
+      <form onSubmit={handleSubmit} className='signup-form'>
+        <div className='signup-form-container'>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label className='signup-text-header'>Sign Up</label>
+          <label className='signup-label'>Email</label>
+          <input
+            className='signup-input'
+            type='text'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label className='signup-label'>Username</label>
+          <input
+            className='signup-input'
+            type='text'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label className='signup-label'>Password</label>
+          <input
+            className='signup-input'
+            type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <label className='signup-label'>Confirm Password</label>
+          <input
+            className='signup-input'
+            type='password'
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <button className='signup-btn' type='submit'>
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

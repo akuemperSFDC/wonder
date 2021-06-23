@@ -1,12 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import Search from '../Search';
 import './Navigation.css';
+import { login } from '../../store/session';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
+
+  const demoUser = {
+    credential: 'Demo-lition',
+    password: 'password',
+  };
 
   let sessionLinks;
   if (sessionUser) {
@@ -15,14 +22,16 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className='session-links'>
         <NavLink to='/login'>Log In</NavLink>
-        <NavLink className='pipechar' to=''>
-          <img
-            className='pipechar'
-            src='https://img.icons8.com/material-outlined/24/000000/vertical-line.png'
-            alt=''
-          />
-        </NavLink>
+        <i class='fal fa-horizontal-rule fa-6x pipechar'></i>
         <NavLink to='/signup'>Sign Up</NavLink>
+        <i class='fal fa-horizontal-rule fa-6x pipechar'></i>
+        <button
+          className='demo-btn'
+          onClick={() => dispatch(login(demoUser))}
+          to='/'
+        >
+          Demo
+        </button>
       </div>
     );
   }
@@ -30,7 +39,9 @@ function Navigation({ isLoaded }) {
   return (
     <div className='navbar-wrapper'>
       <div className='navbar-left'>
-        <h2 className='site-name'>Wonder</h2>
+        <NavLink className='site-name' exact to='/'>
+          Wonder
+        </NavLink>
         <NavLink className='home-icon' exact to='/'>
           <i class='fas fa-home fa-2x'></i>
         </NavLink>

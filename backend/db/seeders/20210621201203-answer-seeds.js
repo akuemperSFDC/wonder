@@ -73,6 +73,51 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          userId: 3,
+          questionId: 8,
+          upvoteCount: 0,
+          answer:
+            'Balut - a filipine delicacy - A balut is a fertilized bird egg (usually a duck) which is incubated for a period of 14 to 21 days, depending on the local culture, and then steamed. The contents are eaten directly from the shell. Balut that is incubated for longer periods have a well-developed embryo and the features of the duckling are recognizable. The partially-developed embryo bones are soft enough to chew and swallow as a whole. The mallard duck (Anas platyrhynchus), also known as the "Pateros duck", is considered to be the most important breed for egg production to make balut.',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 3,
+          questionId: 9,
+          upvoteCount: 0,
+          answer:
+            'Humans can be very selective. They also tend to have a hard time selecting any option when they have more than about 7. With too many options, people may choose none, or apply rules to remove all but a few shortlisted possibilities. If someone is removing possibilities from a long list, it can be easy to see all possibilities as lacking in some way, and remove them all.',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 3,
+          questionId: 10,
+          upvoteCount: 0,
+          answer:
+            'Joe Satriani comes to mind. Even though he has recently played with Michael Anthony and Sammy Hagar in Chickenfoot (a short-lived, unheralded party band), he has never recorded or toured with a major act (I have a hard time qualifying his brief stint in 1993 with Deep Purple to be considered a major contribution, or anything resembling membership).',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 3,
+          questionId: 11,
+          upvoteCount: 0,
+          answer:
+            "Demi Lovato. Her music is boring. I’ve only listened to one or two of her songs and needless to say I wasn't wowed at all. Based off other people’s reviews I can say that the rest of her discography isn't any better.",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 3,
+          questionId: 12,
+          upvoteCount: 0,
+          answer:
+            "So, you might not believe this, but there's an Alien race living close to the so-called stellar-mass black hole Cygnus X-1. They've got crazily advanced technology. However, there's an Achilles heel to it. Here's a metaphor to give you the idea: My grandpa was able to self-repair 95% of the issues with his car. With all the electronics involved, I'm able to self-repair 0.1% of mine. But my car is a thousand times more comfortable and safe. Now, when you compare technology available in 2021 and the one they had for Apollo 11 (1969), you would think landing on the moon should be something we can all do every other weekend. And yet, we barely make it to the ISS. Apollo 11 was the pinnacle of the low-key engineering my grandpa used to repair his car. Exactly the technology these Aliens needed to win the intergalactic war against the forces of evil. But they have a strict non-interference policy, so they couldn't come to Earth and steal the technology. However, they also have excellent intergalactic lawyers able to find a loophole in any policy. (These lawyers are even better than Andrew Weill.) So, they landed on the moon first. They weren't interfering as nobody was there. And when Neil Armstrong and Edwin Aldrin set foot on the moon, they hypnotized them and stole all the NASA knowledge they could from them. Thanks to this stolen NASA low-key engineering knowledge, the Aliens won the intergalactic war against the forces of evil.",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

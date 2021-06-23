@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className='user-icon' onClick={openMenu}>
         <i class='fas fa-user fa-2x'></i>
       </button>
       <div className='profile-dropdown-container arrow-top'>

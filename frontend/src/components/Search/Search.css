@@ -30,6 +30,7 @@
   padding: 0.5rem;
   border-radius: 0;
   transition: background 0.3s;
+  cursor: pointer;
 }
 
 .search-btn:hover {

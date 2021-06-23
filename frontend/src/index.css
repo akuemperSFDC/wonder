@@ -4,21 +4,15 @@
   padding: 0px;
   margin: 0px;
   font-family: 'Roboto', sans-serif;
-  background: #e5e5e5;
+  /* background: #e5e5e5; */
 }
 
 :root {
   --main-color: #bc0909;
-  --main-hover-color: #fa8f8f;
-}
-
-button {
-  border: none;
-  color: var(--main-color);
-  transition: color 0.3s;
-}
-
-button:hover {
-  cursor: pointer;
-  color: var(--main-hover-color);
+  --main-hover-color: #f53232;
+  --main-hover-color-opacity: #bc0909b5;
+  --blue-btn-color: #24a0ed;
+  --blue-btn-color-hover: #24a0edc2;
+  --green-btn-color: #4caf50;
+  --green-btn-color-hover: #4caf4fc6;
 }
