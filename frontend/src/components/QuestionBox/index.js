@@ -9,6 +9,7 @@ import './QuestionBox.css';
 const QuestionBox = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => Object.values(state.questions));
+  const text = useSelector((state) => state.search.text);
 
   useEffect(() => {
     dispatch(getQuestions());
@@ -16,14 +17,22 @@ const QuestionBox = () => {
 
   return (
     <div className='question-box-container'>
-      {questions.map((question) => (
-        <Link to={`/question/${question.id}`} className='question-link'>
-          <div className='question-box'>
-            <UserInfo question={question} key={question.id} />
-            <QuestionArea question={question} key={question.id} />
-          </div>
-        </Link>
-      ))}
+      {questions
+        .filter((q) => {
+          if (text === '') {
+            return q;
+          } else if (q.title.toLowerCase().includes(text.toLowerCase())) {
+            return q;
+          }
+        })
+        .map((question, i) => (
+          <Link to={`/question/${question.id}1`} className='question-link'>
+            <div className='question-box'>
+              <UserInfo question={question} key={question.User.id} />
+              <QuestionArea question={question} key={i} />
+            </div>
+          </Link>
+        ))}
     </div>
   );
 };

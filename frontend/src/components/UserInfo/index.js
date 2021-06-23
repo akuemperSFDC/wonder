@@ -1,7 +1,6 @@
 import './UserInfo.css';
 
 const UserInfo = ({ question }) => {
-  console.log('QUESTION-------------', question);
   return (
     <div className='user-info'>
       <div>

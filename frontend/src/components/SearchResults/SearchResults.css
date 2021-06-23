@@ -1,0 +1,14 @@
+.question-box > * {
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 0 1px grey;
+}
+
+.question-link {
+  text-decoration: none;
+  margin: 5px;
+}
+
+.user-info {
+  margin-top: 5px;
+}
