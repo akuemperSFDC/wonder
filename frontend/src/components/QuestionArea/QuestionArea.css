@@ -1,7 +1,7 @@
 .question-area {
-  background-color: black;
 }
 
 .question-text {
-  background: black;
+  margin: 0.25rem 1rem;
+  font-weight: 600;
 }

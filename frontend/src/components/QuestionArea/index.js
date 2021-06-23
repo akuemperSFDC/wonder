@@ -1,3 +1,5 @@
+import './QuestionArea.css';
+
 const QuestionArea = ({ question }) => {
   return (
     <div className='question-area'>

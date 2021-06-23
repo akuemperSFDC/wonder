@@ -1,8 +1,10 @@
 import UserInfo from '../UserInfo';
 import QuestionArea from '../QuestionArea';
-import { Link } from 'react-router-dom';
+import TopAnswer from '../TopAnswer';
+import ActionBar from '../ActionBar';
+import CommentBar from '../CommentBar';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getQuestions } from '../../store/questions';
 import './QuestionBox.css';
 
@@ -10,6 +12,12 @@ const QuestionBox = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => Object.values(state.questions));
   const text = useSelector((state) => state.search.text);
+
+  const [isOpen, setIsOpen] = useState(-1);
+
+  const showComments = (i) => {
+    setIsOpen(isOpen === i ? -1 : i);
+  };
 
   useEffect(() => {
     dispatch(getQuestions());
@@ -26,12 +34,35 @@ const QuestionBox = () => {
           }
         })
         .map((question, i) => (
-          <Link to={`/question/${question.id}1`} className='question-link'>
+          <div className='question-link'>
             <div className='question-box'>
               <UserInfo question={question} key={question.User.id} />
-              <QuestionArea question={question} key={i} />
+              <QuestionArea question={question} key={question.id + 100} />
+              <TopAnswer
+                question={question}
+                qId={question.id}
+                key={question.id}
+              />
+              <ActionBar
+                id={i}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                showComments={showComments}
+                question={question}
+                qId={question.id}
+                key={question.id}
+              />
+              <CommentBar
+                id={i}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                showComments={showComments}
+                question={question}
+                qId={question.id}
+                key={question.id}
+              />
             </div>
-          </Link>
+          </div>
         ))}
     </div>
   );

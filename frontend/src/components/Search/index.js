@@ -23,9 +23,6 @@ const Search = () => {
           placeholder='Search Wonder'
           onChange={(e) => setSearchText(e.target.value)}
         ></input>
-        <imput className='search-btn' type='submit'>
-          Search
-        </imput>
       </form>
     </div>
   );

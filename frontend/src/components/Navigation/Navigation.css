@@ -60,8 +60,8 @@
 .profile-dropdown {
   margin: 50px;
   position: absolute;
-  left: 873px;
-  top: 14px;
+  left: -132px;
+  top: -3px;
   background: white;
   padding: 1rem;
   box-shadow: -5px 3px 10px rgba(0, 0, 0, 0.3);
@@ -86,9 +86,9 @@
   border-bottom: 7px solid white;
 }
 
-/* .profile-dropdown-container {
-  box-shadow: 0 0 10px black;
-} */
+.profile-dropdown-container {
+  position: relative;
+}
 
 .session-links {
   flex-grow: 1;
@@ -138,6 +138,7 @@
 }
 
 .user-icon {
+  position: relative;
   background-color: white;
   border: none;
   color: var(--main-color);

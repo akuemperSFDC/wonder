@@ -1,7 +1,7 @@
-.question-box > * {
-  padding: 1rem;
+.question-box {
   background-color: white;
   box-shadow: 0 0 1px grey;
+  margin: 2rem 0;
 }
 
 .question-link {

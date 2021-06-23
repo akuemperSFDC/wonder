@@ -1,10 +1,15 @@
 .user-info {
   display: flex;
+  align-items: center;
 }
 
 .user-picture {
-  display: inline block;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
+  margin: 0.75rem 0.5rem;
   border-radius: 50%;
+}
+
+.user-specifics {
+  padding: 0.5rem;
 }
