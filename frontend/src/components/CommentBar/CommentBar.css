@@ -11,10 +11,18 @@
   border-radius: 40px;
   border: none;
   padding: 1rem;
+  margin: 0.5rem;
+  text-align: left;
 }
 
 .comment-input:focus {
   outline: none;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-comment-btn {
@@ -30,6 +38,8 @@
   color: white;
   margin: 0 0.25rem;
   padding: 0.25rem;
+  cursor: pointer;
+  border: none;
 }
 
 .hidden {

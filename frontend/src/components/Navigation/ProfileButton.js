@@ -31,20 +31,20 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className='user-icon' onClick={openMenu}>
-        <i class='fas fa-user fa-2x'></i>
+        <i className='fas fa-user fa-2x'></i>
       </button>
       <div className='profile-dropdown-container arrow-top'>
         {showMenu && (
           <ul className='profile-dropdown arrow-top content-decoration'>
             <li>{user.username}</li>
             <div>
-              <i class='fal fa-horizontal-rule'></i>
-              <i class='fal fa-horizontal-rule'></i>
+              <i className='fal fa-horizontal-rule'></i>
+              <i className='fal fa-horizontal-rule'></i>
             </div>
             <li>{user.email}</li>
             <div>
-              <i class='fal fa-horizontal-rule'></i>
-              <i class='fal fa-horizontal-rule'></i>
+              <i className='fal fa-horizontal-rule'></i>
+              <i className='fal fa-horizontal-rule'></i>
             </div>
             <li>
               <button className='btn-logout' onClick={logout}>

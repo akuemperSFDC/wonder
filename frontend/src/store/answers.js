@@ -2,9 +2,16 @@ import { csrfFetch } from './csrf';
 
 const SET_ANSWERS = 'answers/SET_ANSWERS';
 
+const SET_USER = 'user/SET_USER';
+
 const setAnswers = (answers) => ({
   type: SET_ANSWERS,
   answers,
+});
+
+const setUser = (user) => ({
+  type: SET_USER,
+  user,
 });
 
 export const getAnswers = () => async (dispatch) => {
@@ -14,19 +21,49 @@ export const getAnswers = () => async (dispatch) => {
   dispatch(setAnswers(answers));
 };
 
+export const submitAnswer = (comment) => async (dispatch) => {
+  const res = await csrfFetch('/api/answers', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ comment }),
+  });
+
+  const answers = await res.json();
+
+  dispatch(setAnswers(answers));
+};
+
+export const getUserFromAnswerId = (id) => async (dispatch) => {
+  const res = await csrfFetch('/api/answers/finduser', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id }),
+  });
+
+  const user = await res.json();
+  console.log('--------------------', user);
+
+  dispatch(setUser(user));
+};
+
 const initState = {};
 
 const answersReducer = (state = initState, action) => {
   switch (action.type) {
     case SET_ANSWERS:
-      const allAnswers = {};
-      action.answers.forEach((answer) => {
-        allAnswers[answer.id] = answer;
-      });
-      return {
+      const { answers } = action;
+      const newObj = {
         ...state,
-        ...allAnswers,
+        ...answers,
       };
+      return newObj;
+    case SET_USER:
+      const { user } = action;
+      const newOb = {
+        ...state,
+        ...user,
+      };
+      return newOb;
     default:
       return state;
   }

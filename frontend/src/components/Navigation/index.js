@@ -22,9 +22,9 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className='session-links'>
         <NavLink to='/login'>Log In</NavLink>
-        <i class='fal fa-horizontal-rule fa-6x pipechar'></i>
+        <i className='fal fa-horizontal-rule fa-6x pipechar'></i>
         <NavLink to='/signup'>Sign Up</NavLink>
-        <i class='fal fa-horizontal-rule fa-6x pipechar'></i>
+        <i className='fal fa-horizontal-rule fa-6x pipechar'></i>
         <button
           className='demo-btn'
           onClick={() => dispatch(login(demoUser))}
@@ -43,7 +43,7 @@ function Navigation({ isLoaded }) {
           Wonder
         </NavLink>
         <NavLink className='home-icon' exact to='/'>
-          <i class='fas fa-home fa-2x'></i>
+          <i className='fas fa-home fa-2x'></i>
         </NavLink>
       </div>
       <div className='search-bar'>

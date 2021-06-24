@@ -1,16 +1,22 @@
-import AnswerForm from '../AnswerForm';
-
-import { useEffect } from 'react';
-
+import { useSelector } from 'react-redux';
 import './ActionBar.css';
 
-const ActionBar = ({ question, qId, isOpen, setIsOpen, showComments, id }) => {
+const ActionBar = ({ showComments, id, question }) => {
+  const answers = useSelector((state) => Object.values(state.answers));
+
+  const numberOfComments = answers.filter((answer) => {
+    if (answer.questionId === question.id) {
+      return answer;
+    } else {
+      return null;
+    }
+  });
 
   return (
     <div className='action-bar-container'>
       {/* <div className='action-bar-vote-btn'>
         <button type='submit' className='vote upvote'>
-          <i class='fas fa-angle-up fa-2x'></i>
+          <i className='fas fa-angle-up fa-2x'></i>
         </button>
         <p>10</p>
         <button className='vote downvote'>
@@ -22,10 +28,10 @@ const ActionBar = ({ question, qId, isOpen, setIsOpen, showComments, id }) => {
           <i
             id={id}
             onClick={(e) => showComments(Number(e.target.id))}
-            class='far fa-comment'
+            className='far fa-comment'
           ></i>
         </div>
-        <div className='comment-number'>1</div>
+        <div className='comment-number'>{numberOfComments.length}</div>
       </div>
     </div>
   );

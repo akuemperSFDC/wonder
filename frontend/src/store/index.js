@@ -5,6 +5,7 @@ import questionsReducer from './questions';
 import usersReducer from './user';
 import searchReducer from './search';
 import answersReducer from './answers';
+import topAnswersReducer from './topanswers';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   users: usersReducer,
   search: searchReducer,
   answers: answersReducer,
+  topanswers: topAnswersReducer,
 });
 
 let enhancer;
@@ -19,10 +21,10 @@ let enhancer;
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
 } else {
-  const logger = require('redux-logger').default;
+  // const logger = require('redux-logger').default;
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+  enhancer = composeEnhancers(applyMiddleware(thunk));
 }
 
 const configureStore = (preloadedState) => {

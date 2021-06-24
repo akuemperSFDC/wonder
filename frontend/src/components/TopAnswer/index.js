@@ -1,15 +1,37 @@
 import './TopAnswer.css';
 import ShowMoreText from 'react-show-more-text';
+import { useEffect } from 'react';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { setTopAnswers } from '../../store/topanswers';
 
-const TopAnswer = ({ question, qId }) => {
+const TopAnswer = ({ answers, question, qId }) => {
+  const dispatch = useDispatch();
+
   let topAnswer;
+
   if (Number(question.id) === Number(qId)) {
-    topAnswer = question.Answers[0].answer;
+    topAnswer = question?.Answers[0]?.answer;
   }
 
-  const executeOnClick = (isExpanded) => {
-    console.log(isExpanded);
-  };
+  let userComments = answers.filter((a) => {
+    if (
+      a.questionId !== question.id &&
+      question.userId === question?.User[0]?.id
+    ) {
+      return a?.User?.username;
+    } else {
+      return null;
+    }
+  });
+
+  useEffect(() => {
+    dispatch(setTopAnswers(question?.Answers.answer));
+  }, [dispatch, topAnswer, question?.Answers.answer]);
+
+  let username = userComments[0]?.User.username;
+
+  const executeOnClick = (isExpanded) => {};
 
   return (
     <div className='top-answer-wrapper'>
@@ -27,7 +49,10 @@ const TopAnswer = ({ question, qId }) => {
           <div>{topAnswer}</div>
         </ShowMoreText>
         <div className='answer-author'>
-          <p>Answered by {question.User.username} on date</p>
+          <p>
+            Answered by {username} on{' '}
+            {moment(question?.Answers[0]?.createdAt).format('ddd, hA')}
+          </p>
         </div>
       </div>
     </div>

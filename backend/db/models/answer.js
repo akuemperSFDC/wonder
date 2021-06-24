@@ -3,10 +3,25 @@ module.exports = (sequelize, DataTypes) => {
   const Answer = sequelize.define(
     'Answer',
     {
-      userId: DataTypes.INTEGER,
-      questionId: DataTypes.INTEGER,
-      upvoteCount: DataTypes.INTEGER,
-      answer: DataTypes.TEXT,
+      userId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: { model: 'Users' },
+      },
+      questionId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: { model: 'Questions' },
+      },
+      upvoteCount: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      answer: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
     },
     {}
   );

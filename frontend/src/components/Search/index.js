@@ -1,8 +1,7 @@
 import './Search.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getSearches } from '../../store/search';
-import { useHistory } from 'react-router-dom';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ const Search = () => {
 
   return (
     <div className='search-container'>
-      <i class='fal fa-search search-icon'></i>
+      <i className='fal fa-search search-icon'></i>
       <form>
         <input
           value={searchText}

@@ -10,9 +10,9 @@ const setSearch = (value, text) => ({
   text,
 });
 
-// Thunk
+// Thunk;
 export const getSearches = (val) => async (dispatch) => {
-  const res = await csrfFetch('/api/questions/search', {
+  const res = await csrfFetch('/api/questions/search/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ val }),
