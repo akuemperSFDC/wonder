@@ -33,7 +33,6 @@ const CommentsArea = ({ id, isOpen, question, userSession }) => {
       {answers
         .filter((answer) => {
           if (answer.questionId === question.id) {
-            // console.log('ANSWER', answer);
             return answer;
           } else {
             return null;

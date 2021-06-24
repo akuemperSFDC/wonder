@@ -2,34 +2,25 @@ import './TopAnswer.css';
 import ShowMoreText from 'react-show-more-text';
 import { useEffect } from 'react';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import { setTopAnswers } from '../../store/topanswers';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../store/user';
 
-const TopAnswer = ({ answers, question, qId }) => {
+const TopAnswer = ({ question, qId }) => {
   const dispatch = useDispatch();
+  const users = useSelector((state) => Object.values(state.users));
 
   let topAnswer;
-
   if (Number(question.id) === Number(qId)) {
-    topAnswer = question?.Answers[0]?.answer;
+    topAnswer = question?.Answers[0];
   }
 
-  let userComments = answers.filter((a) => {
-    if (
-      a.questionId !== question.id &&
-      question.userId === question?.User[0]?.id
-    ) {
-      return a?.User?.username;
-    } else {
-      return null;
-    }
-  });
+  const [topAnswerUser] = users.filter(
+    (user) => user?.id === topAnswer?.userId
+  );
 
   useEffect(() => {
-    dispatch(setTopAnswers(question?.Answers.answer));
-  }, [dispatch, topAnswer, question?.Answers.answer]);
-
-  let username = userComments[0]?.User.username;
+    dispatch(getUsers());
+  }, [dispatch]);
 
   const executeOnClick = (isExpanded) => {};
 
@@ -46,11 +37,11 @@ const TopAnswer = ({ answers, question, qId }) => {
           expanded={false}
           width={560}
         >
-          <div>{topAnswer}</div>
+          <div>{topAnswer?.answer}</div>
         </ShowMoreText>
         <div className='answer-author'>
           <p>
-            Answered by {username} on{' '}
+            Answered by {topAnswerUser?.username} on{' '}
             {moment(question?.Answers[0]?.createdAt).format('ddd, hA')}
           </p>
         </div>
