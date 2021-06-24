@@ -1,15 +1,17 @@
-import { useEffect, useState, useForceUpdate } from 'react';
-import { submitAnswer } from '../../store/answers';
+import { useEffect, useState } from 'react';
+import { submitAnswer, getAnswers } from '../../store/answers';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAnswers } from '../../store/answers';
+import { getOneUser } from '../../store/user';
 
 import './CommentBar.css';
 
-const CommentBar = ({ id, isOpen, question, answers }) => {
+const CommentBar = ({ id, isOpen, question }) => {
   const currentUserId = useSelector((state) => state.session.user.id);
+  const answers = useSelector((state) => Object.values(state.answers));
+  const users = useSelector((state) => Object.values(state.users));
   const dispatch = useDispatch();
   const [answer, setAnswer] = useState('');
-  const userId = Number(question.User.id);
+  const userId = currentUserId;
   const questionId = Number(question.id);
 
   const handleSubmit = (e) => {
@@ -29,16 +31,16 @@ const CommentBar = ({ id, isOpen, question, answers }) => {
     dispatch(getAnswers());
   };
 
-  useEffect(() => {}, [answer, dispatch]);
+  useEffect(() => {
+    dispatch(getOneUser(currentUserId));
+  }, [answer, dispatch, currentUserId]);
+
+  const currUser = users.find((user) => user.id === currentUserId);
 
   return (
     <div className={`comment-bar-wrapper ${isOpen === id ? 'open' : 'hidden'}`}>
       <div>
-        <img
-          className='user-picture'
-          src='https://secure.img1-fg.wfcdn.com/im/02238154/compr-r85/8470/84707680/pokemon-pikachu-wall-decal.jpg'
-          alt=''
-        />{' '}
+        <img className='user-picture' src={currUser?.profileImgUrl} alt='' />
       </div>
 
       <form className='input-container' onSubmit={handleSubmit}>

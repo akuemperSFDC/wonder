@@ -18,11 +18,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Questions' },
       },
-      upvoteCount: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
       answer: {
         allowNull: false,
         type: Sequelize.TEXT,

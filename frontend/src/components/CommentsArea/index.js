@@ -2,27 +2,38 @@ import { useSelector, useDispatch } from 'react-redux';
 import './CommentsArea.css';
 import moment from 'moment';
 import ShowMoreText from 'react-show-more-text';
-import { getUserFromAnswerId } from '../../store/answers';
+import { getUserFromAnswerId, getAnswers } from '../../store/answers';
 import { useEffect, useState } from 'react';
 import { getQuestions } from '../../store/questions';
-import { getAnswers } from '../../store/answers';
+import { getUsers } from '../../store/user';
 
-const CommentsArea = ({ id, isOpen, question }) => {
+const CommentsArea = ({ id, isOpen, question, userSession }) => {
   const dispatch = useDispatch();
   const executeOnClick = (isExpanded) => {};
   const answers = useSelector((state) => Object.values(state.answers));
+  const userFromAnswerId = useSelector((state) => state.user);
+  const users = useSelector((state) => Object.values(state.users));
 
   const [answerId, setAnswerId] = useState(null);
 
-  // useEffect(() => {
-  //   dispatch(getUserFromAnswerId(answerId));
-  // }, [dispatch, answerId]);
+  let targetUser = [];
+
+  const trial = users.filter((user) => {
+    return answers.filter(
+      (answer) => Number(answer?.userId) === Number(user?.id)
+    );
+  });
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
 
   return (
     <div className={`ca-wrapper ${isOpen === id ? 'open' : 'hidden'}`}>
       {answers
         .filter((answer) => {
           if (answer.questionId === question.id) {
+            // console.log('ANSWER', answer);
             return answer;
           } else {
             return null;
@@ -32,14 +43,15 @@ const CommentsArea = ({ id, isOpen, question }) => {
           <div className='ca-container' key={answer.id}>
             <div className='ca-user-info'>
               <div>
-                <img
-                  className='ca-user-picture'
-                  src='https://secure.img1-fg.wfcdn.com/im/02238154/compr-r85/8470/84707680/pokemon-pikachu-wall-decal.jpg'
-                  alt=''
-                />{' '}
+                {trial.forEach((user) => {
+                  if (user.id === answer.userId) {
+                    targetUser = [user.profileImgUrl.toString(), user.username];
+                  }
+                })}
+                <img className='ca-user-picture' src={targetUser[0]} alt='' />
               </div>
               <div className='user-specifics-container'>
-                <div className='ca-user-specifics'>{answer.User.username}</div>
+                <div className='ca-user-specifics'>{targetUser[1]}</div>
                 <div className='comment-post-date'>
                   Posted {moment(answer.createdAt).format('ddd, hA')}
                 </div>

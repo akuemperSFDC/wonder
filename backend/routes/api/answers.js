@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const { restoreUser } = require('../../utils/auth');
 const { Question, User, Answer } = require('../../db/models');
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 
 router.get(
   '/',
@@ -40,6 +40,7 @@ router.post(
   restoreUser,
   asyncHandler(async (req, res) => {
     const { id } = req.body;
+    console.log('----------------------------------------', id);
 
     const user = await User.findOne({
       include: [

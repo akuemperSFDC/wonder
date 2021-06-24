@@ -9,12 +9,16 @@ import { useEffect, useState } from 'react';
 import { getQuestions } from '../../store/questions';
 import { getAnswers } from '../../store/answers';
 import './QuestionBox.css';
+import { Route, useParams } from 'react-router-dom';
 
 const QuestionBox = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => Object.values(state.questions));
   const text = useSelector((state) => state.search.text);
   const answers = useSelector((state) => Object.values(state.answers));
+  const userSession = useSelector((state) => state.session.user);
+
+  // console.log(userSession);
 
   const [isOpen, setIsOpen] = useState(-1);
 
@@ -65,6 +69,7 @@ const QuestionBox = () => {
                 question={question}
                 qId={question.id}
                 answers={answers}
+                userSession={userSession}
               />
               <CommentsArea
                 id={i}
@@ -73,6 +78,7 @@ const QuestionBox = () => {
                 showComments={showComments}
                 question={question}
                 qId={question.id}
+                userSession={userSession}
               />
             </div>
           </div>

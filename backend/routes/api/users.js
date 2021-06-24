@@ -50,4 +50,15 @@ router.get(
   })
 );
 
+router.post(
+  '/one',
+  asyncHandler(async (req, res) => {
+    const { id } = req.body;
+    const user = await User.findByPk(id);
+    res.json(user);
+  })
+);
+
+router;
+
 module.exports = router;
