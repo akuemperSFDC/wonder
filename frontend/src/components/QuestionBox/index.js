@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import { getQuestions } from '../../store/questions';
 import { getAnswers } from '../../store/answers';
 import './QuestionBox.css';
-import { Route, useParams } from 'react-router-dom';
 
 const QuestionBox = () => {
   const dispatch = useDispatch();
@@ -20,10 +19,15 @@ const QuestionBox = () => {
 
   // console.log(userSession);
 
-  const [isOpen, setIsOpen] = useState(-1);
+  const [isCommentsOpen, setIsCommentsOpen] = useState(-1);
+  const [userOptions, setUserOptions] = useState(-1);
 
   const showComments = (i) => {
-    setIsOpen(isOpen === i ? -1 : i);
+    setIsCommentsOpen(isCommentsOpen === i ? -1 : i);
+  };
+
+  const showUserOptions = (i) => {
+    setUserOptions(userOptions === i ? -1 : i);
   };
 
   useEffect(() => {
@@ -46,7 +50,13 @@ const QuestionBox = () => {
         .map((question, i) => (
           <div className='question-link' key={question.id}>
             <div className='question-box'>
-              <UserInfo question={question} />
+              <UserInfo
+                question={question}
+                id={i}
+                showUserOptions={showUserOptions}
+                userOptions={userOptions}
+                setUserOptions={setUserOptions}
+              />
               <QuestionArea question={question} />
               <TopAnswer
                 answers={answers}
@@ -55,17 +65,13 @@ const QuestionBox = () => {
               />
               <ActionBar
                 id={i}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
                 showComments={showComments}
                 question={question}
                 qId={question.id}
               />
               <CommentBar
                 id={i}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                showComments={showComments}
+                isCommentsOpen={isCommentsOpen}
                 question={question}
                 qId={question.id}
                 answers={answers}
@@ -73,9 +79,7 @@ const QuestionBox = () => {
               />
               <CommentsArea
                 id={i}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                showComments={showComments}
+                isCommentsOpen={isCommentsOpen}
                 question={question}
                 qId={question.id}
                 userSession={userSession}

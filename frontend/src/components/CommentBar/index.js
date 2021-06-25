@@ -5,9 +5,8 @@ import { getOneUser } from '../../store/user';
 
 import './CommentBar.css';
 
-const CommentBar = ({ id, isOpen, question }) => {
+const CommentBar = ({ id, isCommentsOpen, question }) => {
   const currentUserId = useSelector((state) => state.session.user.id);
-  const answers = useSelector((state) => Object.values(state.answers));
   const users = useSelector((state) => Object.values(state.users));
   const dispatch = useDispatch();
   const [answer, setAnswer] = useState('');
@@ -17,7 +16,7 @@ const CommentBar = ({ id, isOpen, question }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (e.target.value === '') return;
+    if (answer.length === 0) return;
 
     const comment = {
       userId,
@@ -31,14 +30,20 @@ const CommentBar = ({ id, isOpen, question }) => {
     dispatch(getAnswers());
   };
 
+  const handleOnChange = (e) => {
+    setAnswer(e.target.value);
+  };
+
   useEffect(() => {
     dispatch(getOneUser(currentUserId));
-  }, [answer, dispatch, currentUserId]);
+  }, [dispatch, currentUserId]);
 
   const currUser = users.find((user) => user.id === currentUserId);
 
   return (
-    <div className={`comment-bar-wrapper ${isOpen === id ? 'open' : 'hidden'}`}>
+    <div
+      className={`comment-bar-wrapper ${isCommentsOpen === id ? 'open' : ''}`}
+    >
       <div>
         <img className='user-picture' src={currUser?.profileImgUrl} alt='' />
       </div>
@@ -46,12 +51,12 @@ const CommentBar = ({ id, isOpen, question }) => {
       <form className='input-container' onSubmit={handleSubmit}>
         <input
           value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
+          onChange={(e) => handleOnChange(e)}
           type='text'
           placeholder='Add a comment'
           className='comment-input'
         ></input>
-        <button className='add-comment-btn' type='submit'>
+        <button type='submit' className={`add-comment-btn`}>
           Add Comment
         </button>
       </form>

@@ -32,4 +32,34 @@ router.post(
   })
 );
 
+router.delete(
+  '/',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const { id } = req.body.id;
+    const question = await Question.findByPk(id);
+    question.destroy();
+    res.json(question);
+  })
+);
+
+router.put(
+  '/',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const { title } = req.body.question;
+    const { id } = req.body.question;
+    const questionRes = await Question.findByPk(id);
+
+    if (title === questionRes.dataValues.title) {
+      return questionRes;
+    } else if (questionRes) {
+      await questionRes.update({ ...questionRes.dataValues.title, title });
+      res.json(questionRes);
+    }
+  })
+);
+
+router;
+
 module.exports = router;

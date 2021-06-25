@@ -12,9 +12,21 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Question.associate = function (models) {
-    Question.hasMany(models.Answer, { foreignKey: 'questionId' });
-    Question.belongsTo(models.Topic, { foreignKey: 'topicId' });
-    Question.belongsTo(models.User, { foreignKey: 'ownerId' });
+    Question.hasMany(models.Answer, {
+      onDelete: 'CASCADE',
+      foreignKey: 'questionId',
+      hooks: true,
+    });
+    Question.belongsTo(models.Topic, {
+      onDelete: 'CASCADE',
+      foreignKey: 'topicId',
+      hooks: true,
+    });
+    Question.belongsTo(models.User, {
+      // onDelete: 'CASCADE',
+      foreignKey: 'ownerId',
+      // hooks: true,
+    });
   };
   return Question;
 };

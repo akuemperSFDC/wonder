@@ -2,23 +2,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import './CommentsArea.css';
 import moment from 'moment';
 import ShowMoreText from 'react-show-more-text';
-import { getUserFromAnswerId, getAnswers } from '../../store/answers';
-import { useEffect, useState } from 'react';
-import { getQuestions } from '../../store/questions';
+import { useEffect } from 'react';
 import { getUsers } from '../../store/user';
 
-const CommentsArea = ({ id, isOpen, question, userSession }) => {
+const CommentsArea = ({ id, isCommentsOpen, question }) => {
   const dispatch = useDispatch();
   const executeOnClick = (isExpanded) => {};
   const answers = useSelector((state) => Object.values(state.answers));
-  const userFromAnswerId = useSelector((state) => state.user);
   const users = useSelector((state) => Object.values(state.users));
 
-  const [answerId, setAnswerId] = useState(null);
-
   let targetUser = [];
-
-  const trial = users.filter((user) => {
+  const whenUserIdMatchesAnswerUserId = users.filter((user) => {
     return answers.filter(
       (answer) => Number(answer?.userId) === Number(user?.id)
     );
@@ -29,7 +23,7 @@ const CommentsArea = ({ id, isOpen, question, userSession }) => {
   }, [dispatch]);
 
   return (
-    <div className={`ca-wrapper ${isOpen === id ? 'open' : 'hidden'}`}>
+    <div className={`ca-wrapper ${isCommentsOpen === id ? 'open' : 'hidden'}`}>
       {answers
         .filter((answer) => {
           if (answer.questionId === question.id) {
@@ -42,7 +36,7 @@ const CommentsArea = ({ id, isOpen, question, userSession }) => {
           <div className='ca-container' key={answer.id}>
             <div className='ca-user-info'>
               <div>
-                {trial.forEach((user) => {
+                {whenUserIdMatchesAnswerUserId.forEach((user) => {
                   if (user.id === answer.userId) {
                     targetUser = [user.profileImgUrl.toString(), user.username];
                   }

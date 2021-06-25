@@ -1,0 +1,62 @@
+.user-options-container.open {
+  position: relative;
+}
+
+.user-options-container.hidden {
+  display: none;
+}
+
+.user-options {
+  margin: 5px;
+  position: absolute;
+  right: 30px;
+  top: -30px;
+  background: white;
+  padding: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  width: 90px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.box-arrow-right:after {
+  content: ' ';
+  position: absolute;
+  right: -7px;
+  top: 20px;
+  border-top: 7px solid transparent;
+  border-right: none;
+  border-left: 7px solid white;
+  border-bottom: 7px solid transparent;
+}
+
+.user-option-btn {
+  text-align: left;
+  border: none;
+  width: 60px;
+  height: 20px;
+  margin: 5px;
+  background: white;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.user-option-btn:hover {
+  color: var(--main-hover-color);
+}
+
+.fa-ellipsis-h {
+  color: var(--main-color);
+}
+
+.change-ellipse {
+  color: rgba(0, 0, 0, 0.173);
+  cursor: default;
+}

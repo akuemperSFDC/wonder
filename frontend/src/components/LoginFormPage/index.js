@@ -31,6 +31,14 @@ function LoginFormPage() {
     );
   };
 
+  const handleOnChangeUsername = (e) => {
+    setCredential(e.target.value);
+  };
+
+  const handleOnChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <div>
       <img
@@ -52,7 +60,7 @@ function LoginFormPage() {
             type='text'
             value={credential}
             placeholder='Your username or email'
-            onChange={(e) => setCredential(e.target.value)}
+            onChange={(e) => handleOnChangeUsername(e)}
             required
           />
           <label className='login-label'>Password</label>
@@ -61,7 +69,7 @@ function LoginFormPage() {
             type='password'
             value={password}
             placeholder='Your password'
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => handleOnChangePassword(e)}
             required
           />
           <div className='login-demo-container'>

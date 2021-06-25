@@ -4,15 +4,20 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../store/user';
+import { getAnswers } from '../../store/answers';
 
 const TopAnswer = ({ question, qId }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => Object.values(state.users));
+  const answers = useSelector((state) => Object.values(state.answers));
 
-  let topAnswer;
-  if (Number(question.id) === Number(qId)) {
-    topAnswer = question?.Answers[0];
-  }
+  // THIS WILL NOT WORK WHEN I TRY ACTUALLY SORTING LINE 14 COMPARES IT TO ITSELF
+  // let topAnswer;
+  // if (Number(question.id) === Number(qId)) {
+  //   topAnswer = question?.Answers[0];
+  // }
+
+  const topAnswer = answers.find((answer) => answer.questionId === qId);
 
   const [topAnswerUser] = users.filter(
     (user) => user?.id === topAnswer?.userId
@@ -42,7 +47,7 @@ const TopAnswer = ({ question, qId }) => {
         <div className='answer-author'>
           <p>
             Answered by {topAnswerUser?.username} on{' '}
-            {moment(question?.Answers[0]?.createdAt).format('ddd, hA')}
+            {moment(topAnswer?.createdAt).format('ddd, hA')}
           </p>
         </div>
       </div>

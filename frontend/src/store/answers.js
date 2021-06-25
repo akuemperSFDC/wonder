@@ -46,6 +46,17 @@ export const getUserFromAnswerId = (id) => async (dispatch) => {
   dispatch(setUser(user));
 };
 
+// export const deleteComment = () => async (dispatch) => {
+//   const res = await csrfFetch('/api/answers/finduser', {
+//     method: 'Delete',
+//     headers: { 'Content-Type': 'application/json' },
+//   });
+
+//   const data = await res.json();
+
+//   dispatch(setUser());
+// };
+
 const initState = {};
 
 const answersReducer = (state = initState, action) => {

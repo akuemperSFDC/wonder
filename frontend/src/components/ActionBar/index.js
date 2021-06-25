@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import './ActionBar.css';
+import { useEffect } from 'react';
 
 const ActionBar = ({ showComments, id, question }) => {
   const answers = useSelector((state) => Object.values(state.answers));
@@ -12,6 +13,8 @@ const ActionBar = ({ showComments, id, question }) => {
     }
   });
 
+  useEffect(() => {}, [showComments]);
+
   return (
     <div className='action-bar-container'>
       {/* <div className='action-bar-vote-btn'>
@@ -23,15 +26,15 @@ const ActionBar = ({ showComments, id, question }) => {
           <i class='fas fa-angle-up fa-2x rotate-180'></i>
         </button>
       </div> */}
-      <div className='comment-btn'>
-        <div className='comment-icon'>
-          <i
-            id={id}
-            onClick={(e) => showComments(Number(e.target.id))}
-            className='far fa-comment'
-          ></i>
+      <div
+        id={id}
+        onClick={(e) => showComments(Number(e.target.id))}
+        className='comment-btn'
+      >
+        <i id={id} className='far fa-comment fa-lg'></i>
+        <div id={id} className='comment-number'>
+          {numberOfComments.length}
         </div>
-        <div className='comment-number'>{numberOfComments.length}</div>
       </div>
     </div>
   );

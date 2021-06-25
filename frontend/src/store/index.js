@@ -5,7 +5,6 @@ import questionsReducer from './questions';
 import usersReducer from './user';
 import searchReducer from './search';
 import answersReducer from './answers';
-import topAnswersReducer from './topanswers';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
   users: usersReducer,
   search: searchReducer,
   answers: answersReducer,
-  topanswers: topAnswersReducer,
 });
 
 let enhancer;

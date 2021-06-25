@@ -35,26 +35,4 @@ router.post(
   })
 );
 
-router.post(
-  '/finduser',
-  restoreUser,
-  asyncHandler(async (req, res) => {
-    const { id } = req.body;
-    console.log('----------------------------------------', id);
-
-    const user = await User.findOne({
-      include: [
-        {
-          Model: Answer,
-          where: { userId: Sequelize.col(id) },
-        },
-      ],
-    });
-
-    console.log(user);
-
-    res.json(user);
-  })
-);
-
 module.exports = router;
