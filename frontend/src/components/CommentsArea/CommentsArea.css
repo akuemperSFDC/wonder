@@ -38,6 +38,6 @@
   justify-content: space-around;
 }
 
-.comments-wrapper {
-  
+.ca-wrapper.hidden {
+  display: none;
 }

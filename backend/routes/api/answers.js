@@ -10,7 +10,6 @@ router.get(
   restoreUser,
   asyncHandler(async (req, res) => {
     const answers = await Answer.findAll({
-      order: [['createdAt', 'DESC']],
       include: [Question, User],
     });
     res.json(answers);

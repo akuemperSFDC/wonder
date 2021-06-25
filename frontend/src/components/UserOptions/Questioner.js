@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { deleteQuestion, editOneQuestion } from '../../store/questions';
 import { useDispatch } from 'react-redux';
 
-const Questioner = ({ question, showUserOptions }) => {
+const Questioner = ({ question, showUserOptions, showModal, openModal }) => {
   const dispatch = useDispatch();
   const [submitAction, setSubmitAction] = useState('');
 
@@ -12,14 +12,15 @@ const Questioner = ({ question, showUserOptions }) => {
     e.preventDefault();
 
     if (submitAction === 'edit') {
-      const questionReq = {
-        id,
-        question,
-        title: 'I CHANGED IT',
-      };
+      // const questionReq = {
+      //   id,
+      //   question,
+      //   title: 'I CHANGED IT',
+      // };
 
-      dispatch(editOneQuestion(questionReq));
+      // dispatch(editOneQuestion(questionReq));
       setSubmitAction('');
+      openModal();
       showUserOptions(-1);
     } else if (submitAction === 'delete') {
       const id = question.id;

@@ -12,6 +12,8 @@ const UserOptions = ({
   setUserControls,
   userControls,
   showUserOptions,
+  showModal,
+  openModal,
 }) => {
   const dispatch = useDispatch();
   const currentUserId = useSelector((state) => state.session.user.id);
@@ -58,6 +60,8 @@ const UserOptions = ({
         question={question}
         setUserControls={setUserControls}
         showUserOptions={showUserOptions}
+        showModal={showModal}
+        openModal={openModal}
       />
     );
   } else {
@@ -76,7 +80,11 @@ const UserOptions = ({
           userOptions === id ? 'open' : 'hidden'
         }`}
       >
-        <div className='user-options box-arrow-right'>
+        <div
+          className={`user-options  box-arrow-right ${
+            userOptions === id ? 'open' : 'hidden'
+          }`}
+        >
           {renderProperComponentBasedOnRole === 'hiddenControls'
             ? null
             : renderProperComponentBasedOnRole}

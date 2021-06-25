@@ -1,7 +1,7 @@
 .page-container {
   display: flex;
-  width: 1050px;
-  height: 300px;
+  width: 100vw;
+  height: 100vh;
   margin-left: auto;
   margin-right: auto;
 }

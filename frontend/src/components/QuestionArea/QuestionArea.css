@@ -1,4 +1,9 @@
 .question-area {
+  text-decoration: none;
+}
+
+.question-area:visited {
+  color: black;
 }
 
 .question-text {

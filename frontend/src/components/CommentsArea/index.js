@@ -5,11 +5,12 @@ import ShowMoreText from 'react-show-more-text';
 import { useEffect } from 'react';
 import { getUsers } from '../../store/user';
 
-const CommentsArea = ({ id, isCommentsOpen, question }) => {
+const CommentsArea = ({ id, isCommentsOpen, question, topAnswerId }) => {
   const dispatch = useDispatch();
   const executeOnClick = (isExpanded) => {};
   const answers = useSelector((state) => Object.values(state.answers));
   const users = useSelector((state) => Object.values(state.users));
+  const topAnswers = useSelector((state) => Object.values(state.topAnswers));
 
   let targetUser = [];
   const whenUserIdMatchesAnswerUserId = users.filter((user) => {
@@ -26,7 +27,10 @@ const CommentsArea = ({ id, isCommentsOpen, question }) => {
     <div className={`ca-wrapper ${isCommentsOpen === id ? 'open' : 'hidden'}`}>
       {answers
         .filter((answer) => {
-          if (answer.questionId === question.id) {
+          if (
+            answer.questionId === question.id &&
+            question.Answers[0]?.id !== answer.id
+          ) {
             return answer;
           } else {
             return null;

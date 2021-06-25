@@ -33,7 +33,7 @@ const ActionBar = ({ showComments, id, question }) => {
       >
         <i id={id} className='far fa-comment fa-lg'></i>
         <div id={id} className='comment-number'>
-          {numberOfComments.length}
+          {numberOfComments.length - 1}
         </div>
       </div>
     </div>

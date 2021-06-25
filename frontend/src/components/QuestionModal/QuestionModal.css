@@ -1,0 +1,98 @@
+.q-modal-wrapper {
+  position: fixed;
+  height: 200vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  left: calc(-50vw + 50%);
+  top: calc(-50vh + 50%);
+}
+
+.q-modal-wrapper.hide-modal {
+  display: none;
+}
+
+.question-modal-container {
+  position: fixed;
+  top: 500px;
+  left: 50%;
+  margin-top: -10%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: 43%;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.question-modal-container.hide-modal {
+  display: none;
+}
+
+.question-modal-container.show-modal {
+  overflow-y: hidden;
+}
+
+.fa-times {
+  position: absolute;
+  color: white;
+  padding-right: 1rem;
+  padding-top: 0.6rem;
+  right: 0;
+  top: 0;
+}
+
+.question-modal-banner {
+  padding: 0.5em 0;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue-btn-color);
+  margin-bottom: 1rem;
+}
+
+.q-modal-banner-text {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.25rem;
+  color: white;
+}
+
+.q-modal-form-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%;
+  width: 80%;
+  margin: auto auto;
+}
+
+.q-modal-text-area {
+  height: 80%;
+  text-align: left;
+  border-radius: 10px;
+  resize: none;
+  padding: 1rem;
+}
+
+.q-modal-text-area:focus {
+  outline: none;
+}
+
+.q-modal-submit-btn {
+  height: 30px;
+  width: 27%;
+  border-radius: 50px;
+  border: none;
+  margin: 1rem auto;
+  background: var(--blue-btn-color);
+  color: white;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
+}
+
+.q-modal-submit-btn:hover {
+  background-color: var(--blue-btn-color-hover);
+}

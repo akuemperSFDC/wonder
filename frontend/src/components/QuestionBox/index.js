@@ -4,23 +4,23 @@ import TopAnswer from '../TopAnswer';
 import ActionBar from '../ActionBar';
 import CommentBar from '../CommentBar';
 import CommentsArea from '../CommentsArea';
+import QuestionModal from '../QuestionModal';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getQuestions } from '../../store/questions';
 import { getAnswers } from '../../store/answers';
 import './QuestionBox.css';
 
-const QuestionBox = () => {
+const QuestionBox = ({ showModal, openModal }) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => Object.values(state.questions));
   const text = useSelector((state) => state.search.text);
   const answers = useSelector((state) => Object.values(state.answers));
   const userSession = useSelector((state) => state.session.user);
 
-  // console.log(userSession);
-
   const [isCommentsOpen, setIsCommentsOpen] = useState(-1);
   const [userOptions, setUserOptions] = useState(-1);
+  const [topAnswerId, setTopAnswerId] = useState(null);
 
   const showComments = (i) => {
     setIsCommentsOpen(isCommentsOpen === i ? -1 : i);
@@ -56,12 +56,15 @@ const QuestionBox = () => {
                 showUserOptions={showUserOptions}
                 userOptions={userOptions}
                 setUserOptions={setUserOptions}
+                showModal={showModal}
+                openModal={openModal}
               />
               <QuestionArea question={question} />
               <TopAnswer
                 answers={answers}
                 question={question}
                 qId={question.id}
+                setTopAnswerId={setTopAnswerId}
               />
               <ActionBar
                 id={i}
@@ -83,6 +86,7 @@ const QuestionBox = () => {
                 question={question}
                 qId={question.id}
                 userSession={userSession}
+                topAnswerId={topAnswerId}
               />
             </div>
           </div>

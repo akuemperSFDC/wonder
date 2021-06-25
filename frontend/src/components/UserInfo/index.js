@@ -6,17 +6,21 @@ import { getUsers, getOneUser } from '../../store/user';
 import { useSelector, useDispatch } from 'react-redux';
 var _ = require('lodash');
 
-const UserInfo = ({ userOptions, question, showUserOptions, id }) => {
+const UserInfo = ({
+  userOptions,
+  question,
+  showUserOptions,
+  id,
+  showModal,
+  openModal,
+}) => {
   const dispatch = useDispatch();
   const [userControls, setUserControls] = useState('hidden-control');
-  const users = useSelector((state) => Object.values(state.users));
+  const [spinAnimate, setSpinAnimate] = useState('spin-off');
   // const assignedUser = users.find((user) => user.id === question.id);
   // const user = dispatch(getOneUser(question.userId));
   // console.log(user);
 
-  const userFound = _.find(users, function (user) {
-    return user.id === question.ownerId;
-  });
 
   const handleClick = (e) => {
     if (userControls === 'hidden-control') {
@@ -24,6 +28,12 @@ const UserInfo = ({ userOptions, question, showUserOptions, id }) => {
     } else {
       showUserOptions(Number(e.target.id));
     }
+  };
+
+  const handleClickSpinAnimate = (e) => {
+    spinAnimate === 'spin-off'
+      ? setSpinAnimate('spin-on')
+      : setSpinAnimate('spin-off');
   };
 
   useEffect(() => {
@@ -34,22 +44,29 @@ const UserInfo = ({ userOptions, question, showUserOptions, id }) => {
     <div className='user-info-container'>
       <div className='user-info'>
         <div>
-          <img className='user-picture' src={userFound?.profileImgUrl} alt='' />
+          <img
+            className='user-picture'
+            src={question?.User?.profileImgUrl}
+            alt=''
+          />
         </div>
         <div className='user-specifics'>
-          <p>{userFound?.username}</p>
+          <p>{question?.User?.username}</p>
           <div className='comment-post-date'>
-            Posted {moment(question.createdAt).format('ddd, hA')}
+            Posted {moment(question.createdAt).format('ddd, hh:mmA')}
           </div>
         </div>
       </div>
       <div className='user-info-ellipse-container'>
         <i
           id={id}
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => {
+            handleClick(e);
+            handleClickSpinAnimate();
+          }}
           className={`fal fa-ellipsis-h fa-2x ${
             userControls === 'hidden-control' ? 'change-ellipse' : ''
-          }`}
+          } ${spinAnimate}`}
         ></i>
         <UserOptions
           setUserControls={setUserControls}
@@ -58,6 +75,8 @@ const UserInfo = ({ userOptions, question, showUserOptions, id }) => {
           id={id}
           question={question}
           showUserOptions={showUserOptions}
+          showModal={showModal}
+          openModal={openModal}
         />
       </div>
     </div>

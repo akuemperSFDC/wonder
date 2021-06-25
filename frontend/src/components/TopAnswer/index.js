@@ -5,11 +5,13 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../store/user';
 import { getAnswers } from '../../store/answers';
+import { setTopAnswers } from '../../store/topanswers';
 
-const TopAnswer = ({ question, qId }) => {
+const TopAnswer = ({ question, qId, setTopAnswerId }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => Object.values(state.users));
   const answers = useSelector((state) => Object.values(state.answers));
+  const currentUser = useSelector((state) => state.session.user);
 
   // THIS WILL NOT WORK WHEN I TRY ACTUALLY SORTING LINE 14 COMPARES IT TO ITSELF
   // let topAnswer;
@@ -17,7 +19,29 @@ const TopAnswer = ({ question, qId }) => {
   //   topAnswer = question?.Answers[0];
   // }
 
-  const topAnswer = answers.find((answer) => answer.questionId === qId);
+  // let topAnswer = answers.find(
+  //   (answer) => answer.questionId === qId && answer.userId !== currentUser.id
+  // );
+
+  let topAnswer = answers.find((answer) => {
+    if (
+      answer.questionId === qId &&
+      answer.userId !== answer.Question.ownerId
+    ) {
+      return answer;
+    } else {
+      return undefined;
+    }
+  });
+
+  // console.log(topAnswer);
+  // const handleSetTopAnswerId = () => {
+  //   setTopAnswerId(topAnswer?.id);
+  // };
+
+  // handleSetTopAnswerId();
+
+  // console.log(topAnswer);
 
   const [topAnswerUser] = users.filter(
     (user) => user?.id === topAnswer?.userId
@@ -25,7 +49,8 @@ const TopAnswer = ({ question, qId }) => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+    dispatch(setTopAnswers(topAnswer));
+  }, [dispatch, topAnswer]);
 
   const executeOnClick = (isExpanded) => {};
 
@@ -40,7 +65,7 @@ const TopAnswer = ({ question, qId }) => {
           anchorClass='my-anchor-css-class'
           onClick={executeOnClick}
           expanded={false}
-          width={560}
+          width={500}
         >
           <div>{topAnswer?.answer}</div>
         </ShowMoreText>

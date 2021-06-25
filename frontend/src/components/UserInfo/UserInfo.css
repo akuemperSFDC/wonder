@@ -33,3 +33,19 @@
 .fa-ellipsis-h {
   cursor: pointer;
 }
+
+.spin-on {
+  transform: rotate(-180deg);
+  transition: transform 0.2s ease-out;
+}
+
+.spin-off {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-out;
+}
+
+.change-ellipse.spin-off,
+.change-ellipse.spin-on {
+  transform: none;
+  transition: none;
+}
