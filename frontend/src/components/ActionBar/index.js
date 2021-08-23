@@ -3,17 +3,10 @@ import './ActionBar.css';
 import { useEffect } from 'react';
 
 const ActionBar = ({ showComments, id, question }) => {
-  const answers = useSelector((state) => Object.values(state.answers));
+  const numberOfComments =
+    question?.Comments.length > 0 ? question?.Comments.length : 0;
 
-  const numberOfComments = answers.filter((answer) => {
-    if (answer.questionId === question.id) {
-      return answer;
-    } else {
-      return null;
-    }
-  });
-
-  // useEffect(() => {}, [showComments]);
+  useEffect(() => {}, [showComments]);
 
   return (
     <div className='action-bar-container'>
@@ -33,7 +26,7 @@ const ActionBar = ({ showComments, id, question }) => {
       >
         <i id={id} className='far fa-comment fa-lg'></i>
         <div id={id} className='comment-number'>
-          {numberOfComments.length - 1}
+          {numberOfComments}
         </div>
       </div>
     </div>
