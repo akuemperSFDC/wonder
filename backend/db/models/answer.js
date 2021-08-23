@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
   Answer.associate = function (models) {
     Answer.belongsTo(models.User, { foreignKey: 'userId' });
     Answer.belongsTo(models.Question, { foreignKey: 'questionId' });
-    Answer.hasMany(models.Comment, { foreignKey: 'answerId' });
   };
   return Answer;
 };

@@ -2,14 +2,16 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const { restoreUser } = require('../../utils/auth');
-const { Question, User, Answer } = require('../../db/models');
+const { Question, User, Answer, Comment } = require('../../db/models');
 const { Op } = require('sequelize');
 
 router.get(
   '/',
   restoreUser,
   asyncHandler(async (req, res) => {
-    const questions = await Question.findAll({ include: [User, Answer] });
+    const questions = await Question.findAll({
+      include: [User, Answer, Comment],
+    });
     res.json(questions);
   })
 );

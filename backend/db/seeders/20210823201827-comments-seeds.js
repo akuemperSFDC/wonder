@@ -12,28 +12,28 @@ module.exports = {
       'Comments',
       [
         {
-          answerId: 1,
+          questionId: 1,
           ownerId: 1,
           content: 'Super cool!',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          answerId: 1,
+          questionId: 1,
           ownerId: 3,
           content: 'Nice!',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          answerId: 1,
+          questionId: 1,
           ownerId: 3,
           content: 'Awesome!',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          answerId: 1,
+          questionId: 1,
           ownerId: 2,
           content: 'Neat!',
           createdAt: new Date(),
