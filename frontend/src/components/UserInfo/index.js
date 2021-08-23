@@ -17,6 +17,7 @@ const UserInfo = ({
   const dispatch = useDispatch();
   const [userControls, setUserControls] = useState('hidden-control');
   const [spinAnimate, setSpinAnimate] = useState('spin-off');
+  const users = useSelector((state) => state.users);
   // const assignedUser = users.find((user) => user.id === question.id);
   // const user = dispatch(getOneUser(question.userId));
   // console.log(user);
@@ -35,22 +36,19 @@ const UserInfo = ({
       : setSpinAnimate('spin-off');
   };
 
-  // useEffect(() => {
-  //   // dispatch(getUsers());
-  // }, []);
-
   return (
     <div className='user-info-container'>
       <div className='user-info'>
         <div>
           <img
             className='user-picture'
-            src={question?.User?.profileImgUrl}
+            // src={question?.User?.profileImgUrl}
+            src={users[question?.Answers[0]?.userId]?.profileImgUrl}
             alt=''
           />
         </div>
         <div className='user-specifics'>
-          <p>{question?.User?.username}</p>
+          <p>{users[question?.Answers[0]?.userId]?.username}</p>
           <div className='comment-post-date'>
             Posted {moment(question.createdAt).format('ddd, hh:mmA')}
           </div>
