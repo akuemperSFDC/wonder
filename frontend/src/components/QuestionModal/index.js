@@ -3,16 +3,19 @@ import { editOneQuestion } from '../../store/questions';
 import { useDispatch } from 'react-redux';
 import './QuestionModal.css';
 
-const QuestionModal = ({ showModal, openModal }) => {
+const QuestionModal = ({ showModal, openModal, question }) => {
   const dispatch = useDispatch();
   const [updatedQuestion, setUpdatedQuestion] = useState('');
+  const { id } = question;
+
+  // console.log(question);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setUpdatedQuestion(e.target.value);
     const questionReq = {
-      // id,
-      // question,
+      id,
+      question,
       title: updatedQuestion,
     };
 
@@ -41,11 +44,10 @@ const QuestionModal = ({ showModal, openModal }) => {
         </div>
         <form onSubmit={handleSubmit} className='q-modal-form-area'>
           <textarea
-            onChange={(e) => setUpdatedQuestion(e)}
+            onChange={(e) => setUpdatedQuestion(e.target.value)}
             cols='40'
             rows='5'
             className='q-modal-text-area'
-            placeholder='Edit question here'
           >
             {updatedQuestion}
           </textarea>

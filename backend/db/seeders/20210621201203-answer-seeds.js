@@ -20,31 +20,10 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userId: 3,
-          questionId: 1,
-          answer: 'Lots of good stuff!',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          userId: 3,
-          questionId: 1,
-          answer: 'Cant think of anything atm',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           userId: 1,
           questionId: 2,
           answer:
             '1. Support Heart Health, 2. Help Control Weight, 3. Prevent Kidney Stones',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          userId: 3,
-          questionId: 2,
-          answer: 'They taste good squeezed into drinks',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

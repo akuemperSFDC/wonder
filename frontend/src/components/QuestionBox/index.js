@@ -13,7 +13,7 @@ import './QuestionBox.css';
 
 const QuestionBox = ({ showModal, openModal }) => {
   const dispatch = useDispatch();
-  const questions = useSelector((state) => Object.values(state.questions));
+  let questions = useSelector((state) => Object.values(state.questions));
   const text = useSelector((state) => state.search.text);
   const answers = useSelector((state) => Object.values(state.answers));
   const userSession = useSelector((state) => state.session.user);
@@ -21,6 +21,9 @@ const QuestionBox = ({ showModal, openModal }) => {
   const [isCommentsOpen, setIsCommentsOpen] = useState(-1);
   const [userOptions, setUserOptions] = useState(-1);
   const [topAnswerId, setTopAnswerId] = useState(null);
+
+  // if you want to reverse the order of displayed items
+  // questions = questions.reverse();
 
   const showComments = (i) => {
     setIsCommentsOpen(isCommentsOpen === i ? -1 : i);
@@ -50,6 +53,11 @@ const QuestionBox = ({ showModal, openModal }) => {
         .map((question, i) => (
           <div className='question-link' key={question.id}>
             <div className='question-box'>
+              <QuestionModal
+                showModal={showModal}
+                openModal={openModal}
+                question={question}
+              />
               <UserInfo
                 question={question}
                 id={i}

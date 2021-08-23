@@ -29,8 +29,9 @@ const CommentsArea = ({ id, isCommentsOpen, question, topAnswerId }) => {
         .filter((answer) => {
           if (
             answer.questionId === question.id &&
-            question.Answers[0]?.id !== answer.id
+            question?.Answers[id]?.id !== answer.id
           ) {
+            console.log(question.Answers);
             return answer;
           } else {
             return null;

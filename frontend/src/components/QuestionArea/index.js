@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const QuestionArea = ({ question }) => {
   return (
-    <Link className='question-area'>
+    <Link to={`/question/${question.id}`} className='question-area'>
       <p className='question-text'>{question.title}</p>
     </Link>
   );

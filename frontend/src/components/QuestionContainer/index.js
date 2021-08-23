@@ -10,7 +10,6 @@ const QuestionContainer = ({ showModal, openModal }) => {
   if (sessionUser) {
     return (
       <div className='question-container'>
-        <QuestionModal showModal={showModal} openModal={openModal} />
         <QuestionBox showModal={showModal} openModal={openModal} />
       </div>
     );

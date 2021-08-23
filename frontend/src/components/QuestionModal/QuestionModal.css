@@ -2,7 +2,8 @@
   position: fixed;
   height: 200vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0.3;
   z-index: 2;
   left: calc(-50vw + 50%);
   top: calc(-50vh + 50%);
@@ -74,6 +75,9 @@
   border-radius: 10px;
   resize: none;
   padding: 1rem;
+  font-size: 1rem;
+  color: black;
+  font-weight: 500;
 }
 
 .q-modal-text-area:focus {

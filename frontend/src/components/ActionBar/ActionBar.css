@@ -41,6 +41,11 @@
 }
 
 .fa-comment {
+  color: black;
+  transition: color 0.3s ease-out;
+}
+
+.fa-comment:hover {
   color: var(--blue-btn-color);
 }
 

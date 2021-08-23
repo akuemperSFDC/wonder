@@ -62,12 +62,15 @@ const initState = {};
 const answersReducer = (state = initState, action) => {
   switch (action.type) {
     case SET_ANSWERS:
+      const allAnswers = [];
       const { answers } = action;
-      const newObj = {
+      answers.forEach((answer) => {
+        allAnswers[answer.id] = answer;
+      });
+      return {
         ...state,
-        ...answers,
+        ...allAnswers,
       };
-      return newObj;
     case SET_USER:
       const { user } = action;
       const newOb = {

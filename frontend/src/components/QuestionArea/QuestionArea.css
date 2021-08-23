@@ -1,9 +1,14 @@
 .question-area {
   text-decoration: none;
+  color: black;
 }
 
 .question-area:visited {
   color: black;
+}
+
+.question-area:hover {
+  text-decoration: underline;
 }
 
 .question-text {

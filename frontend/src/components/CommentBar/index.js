@@ -42,7 +42,9 @@ const CommentBar = ({ id, isCommentsOpen, question }) => {
 
   return (
     <div
-      className={`comment-bar-wrapper ${isCommentsOpen === id ? 'open' : ''}`}
+      className={`comment-bar-wrapper ${
+        isCommentsOpen === id ? 'open' : 'hidden'
+      }`}
     >
       <div>
         <img className='user-picture' src={currUser?.profileImgUrl} alt='' />
