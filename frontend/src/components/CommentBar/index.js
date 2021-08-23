@@ -1,37 +1,39 @@
 import { useEffect, useState } from 'react';
-import { submitAnswer, getAnswers } from '../../store/answers';
+import { submitComment, getComments } from '../../store/comments';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneUser } from '../../store/user';
+import { getQuestions } from '../../store/questions';
 
 import './CommentBar.css';
 
 const CommentBar = ({ id, isCommentsOpen, question }) => {
+  const dispatch = useDispatch();
+
   const currentUserId = useSelector((state) => state.session.user.id);
   const users = useSelector((state) => Object.values(state.users));
-  const dispatch = useDispatch();
-  const [answer, setAnswer] = useState('');
+
   const userId = currentUserId;
   const questionId = Number(question.id);
+  const [comment, setComment] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (answer.length === 0) return;
+    if (comment.length === 0) return;
 
-    const comment = {
-      userId,
+    const cmt = {
+      ownerId: userId,
       questionId,
-      answer,
+      content: comment,
     };
 
-    setAnswer('');
-
-    dispatch(submitAnswer(comment));
-    dispatch(getAnswers());
+    setComment('');
+    dispatch(submitComment(cmt));
+    dispatch(getQuestions());
   };
 
   const handleOnChange = (e) => {
-    setAnswer(e.target.value);
+    setComment(e.target.value);
   };
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const CommentBar = ({ id, isCommentsOpen, question }) => {
 
       <form className='input-container' onSubmit={handleSubmit}>
         <input
-          value={answer}
+          value={comment}
           onChange={(e) => handleOnChange(e)}
           type='text'
           placeholder='Add a comment'

@@ -4,6 +4,7 @@ import moment from 'moment';
 import ShowMoreText from 'react-show-more-text';
 import { useEffect } from 'react';
 import { getUsers } from '../../store/user';
+import { getQuestions } from '../../store/questions';
 
 const CommentsArea = ({ id, isCommentsOpen, question, topAnswerId }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,6 @@ const CommentsArea = ({ id, isCommentsOpen, question, topAnswerId }) => {
       (answer) => Number(answer?.userId) === Number(user?.id)
     );
   });
-  // console.log(question?.Comments);
 
   useEffect(() => {}, [question?.Comments]);
 
