@@ -10,7 +10,6 @@ const CommentsArea = ({ id, isCommentsOpen, question, topAnswerId }) => {
   const executeOnClick = (isExpanded) => {};
   const answers = useSelector((state) => Object.values(state.answers));
   const users = useSelector((state) => Object.values(state.users));
-  const topAnswers = useSelector((state) => Object.values(state.topAnswers));
 
   let targetUser = [];
   const whenUserIdMatchesAnswerUserId = users.filter((user) => {
@@ -18,6 +17,9 @@ const CommentsArea = ({ id, isCommentsOpen, question, topAnswerId }) => {
       (answer) => Number(answer?.userId) === Number(user?.id)
     );
   });
+  // console.log(question?.Comments);
+
+  useEffect(() => {}, [question?.Comments]);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -25,51 +27,39 @@ const CommentsArea = ({ id, isCommentsOpen, question, topAnswerId }) => {
 
   return (
     <div className={`ca-wrapper ${isCommentsOpen === id ? 'open' : 'hidden'}`}>
-      {answers
-        .filter((answer) => {
-          if (
-            answer.questionId === question.id &&
-            question?.Answers[id]?.id !== answer.id
-          ) {
-            console.log(question.Answers);
-            return answer;
-          } else {
-            return null;
-          }
-        })
-        .map((answer) => (
-          <div className='ca-container' key={answer.id}>
-            <div className='ca-user-info'>
-              <div>
-                {whenUserIdMatchesAnswerUserId.forEach((user) => {
-                  if (user.id === answer.userId) {
-                    targetUser = [user.profileImgUrl.toString(), user.username];
-                  }
-                })}
-                <img className='ca-user-picture' src={targetUser[0]} alt='' />
-              </div>
-              <div className='user-specifics-container'>
-                <div className='ca-user-specifics'>{targetUser[1]}</div>
-                <div className='comment-post-date'>
-                  Posted {moment(answer.createdAt).format('ddd, hA')}
-                </div>
+      {question?.Comments.map((comment) => (
+        <div className='ca-container' key={comment.id}>
+          <div className='ca-user-info'>
+            <div>
+              {whenUserIdMatchesAnswerUserId.forEach((user) => {
+                if (user.id === comment.ownerId) {
+                  targetUser = [user.profileImgUrl.toString(), user.username];
+                }
+              })}
+              <img className='ca-user-picture' src={targetUser[0]} alt='' />
+            </div>
+            <div className='user-specifics-container'>
+              <div className='ca-user-specifics'>{targetUser[1]}</div>
+              <div className='comment-post-date'>
+                Posted {moment(comment.createdAt).format('ddd, hA')}
               </div>
             </div>
-            <ShowMoreText
-              lines={3}
-              more='(more)'
-              less='(less)'
-              className='answer-content-container'
-              anchorClass='my-anchor-css-class'
-              onClick={executeOnClick}
-              expanded={false}
-              width={560}
-            >
-              <div className='answer-content-container'>{answer.answer}</div>
-            </ShowMoreText>
-            <div className='vote-container'></div>
           </div>
-        ))}
+          <ShowMoreText
+            lines={3}
+            more='(more)'
+            less='(less)'
+            className='answer-content-container'
+            anchorClass='my-anchor-css-class'
+            onClick={executeOnClick}
+            expanded={false}
+            width={560}
+          >
+            <div className='answer-content-container'>{comment.content}</div>
+          </ShowMoreText>
+          <div className='vote-container'></div>
+        </div>
+      ))}
     </div>
   );
 };

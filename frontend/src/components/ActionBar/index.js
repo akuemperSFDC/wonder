@@ -13,7 +13,7 @@ const ActionBar = ({ showComments, id, question }) => {
     }
   });
 
-  useEffect(() => {}, [showComments]);
+  // useEffect(() => {}, [showComments]);
 
   return (
     <div className='action-bar-container'>

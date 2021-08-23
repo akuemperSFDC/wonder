@@ -21,7 +21,6 @@ const UserInfo = ({
   // const user = dispatch(getOneUser(question.userId));
   // console.log(user);
 
-
   const handleClick = (e) => {
     if (userControls === 'hidden-control') {
       return;
@@ -36,9 +35,9 @@ const UserInfo = ({
       : setSpinAnimate('spin-off');
   };
 
-  useEffect(() => {
-    // dispatch(getUsers());
-  }, []);
+  // useEffect(() => {
+  //   // dispatch(getUsers());
+  // }, []);
 
   return (
     <div className='user-info-container'>
