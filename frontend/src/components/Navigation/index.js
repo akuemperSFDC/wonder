@@ -40,7 +40,7 @@ function Navigation({ isLoaded }) {
     <div className='navbar-wrapper'>
       <div className='navbar-left'>
         <NavLink className='site-name' exact to='/'>
-          Wonder
+          Wonderrrrrrrrrr
         </NavLink>
         <NavLink className='home-icon' exact to='/'>
           <i className='fas fa-home fa-2x'></i>
