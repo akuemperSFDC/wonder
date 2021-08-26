@@ -20,7 +20,6 @@ router.post(
   restoreUser,
   asyncHandler(async (req, res) => {
     const { questionId } = req.body;
-    console.log('-------------------------', questionId);
     const comments = await Comment.findAll({
       where: { questionId },
       include: [Question, User],

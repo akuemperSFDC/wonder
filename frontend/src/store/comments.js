@@ -14,7 +14,6 @@ const setComment = (cmt) => ({
 });
 
 export const getComments = (questionId) => async (dispatch) => {
-  console.log(questionId);
   const res = await csrfFetch(`/api/comments/questionId`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

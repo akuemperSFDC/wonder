@@ -41,7 +41,6 @@ export const getUserFromAnswerId = (id) => async (dispatch) => {
   });
 
   const user = await res.json();
-  console.log('--------------------', user);
 
   dispatch(setUser(user));
 };

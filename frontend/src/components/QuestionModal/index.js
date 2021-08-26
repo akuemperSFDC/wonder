@@ -8,8 +8,6 @@ const QuestionModal = ({ showModal, openModal, question }) => {
   const [updatedQuestion, setUpdatedQuestion] = useState('');
   const { id } = question;
 
-  // console.log(question);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setUpdatedQuestion(e.target.value);

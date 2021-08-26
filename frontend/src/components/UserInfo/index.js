@@ -20,7 +20,6 @@ const UserInfo = ({
   const users = useSelector((state) => state.users);
   // const assignedUser = users.find((user) => user.id === question.id);
   // const user = dispatch(getOneUser(question.userId));
-  // console.log(user);
 
   const handleClick = (e) => {
     if (userControls === 'hidden-control') {
